@@ -22,6 +22,30 @@ services:
       - PORT=3000
       - NAME="NAME"
       - SERVER_NUMBER=2
+      
+  authentication_one:
+    build:
+      context: ./authentication
+    restart: always
+    container_name: authentication_one
+    environment:
+      - PORT=3000
+      - SALT_ROUNDS=9
+      - MONGO_URI="mongodb://root:example@mongo:27017/"
+      - LOG_LEVEL="error"
+      - SERVER_IDENTITY="eden"
+      
+  authentication_two:
+    build:
+      context: ./authentication
+    restart: always
+    container_name: authentication_two
+    environment:
+      - PORT=3000
+      - SALT_ROUNDS=9
+      - MONGO_URI="mongodb://root:example@mongo:27017/"
+      - LOG_LEVEL="error"
+      - SERVER_IDENTITY="valhalla"
   
   
   ghost:
