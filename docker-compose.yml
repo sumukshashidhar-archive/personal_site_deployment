@@ -89,7 +89,13 @@ services:
       context: ./nginx
     restart: always
     depends_on:
-      - frontend
+      - frontend_one
+      - frontend_two
+      - ghost
+      - db
+      - mongo
+      - authentication_one
+      - authentication_two
     ports:
       - "80:80"
       - "443:443"
