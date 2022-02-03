@@ -27,6 +27,7 @@ sudo certbot certonly --standalone -d domain.com
 mkdir ./data
 mkdir ./data/mysql
 mkdir ./data/ghost
+mkdir ./data/mongo
 
 
 # run docker compose
