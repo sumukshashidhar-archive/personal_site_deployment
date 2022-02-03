@@ -47,6 +47,16 @@ services:
       - LOG_LEVEL="error"
       - SERVER_IDENTITY="valhalla"
   
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - "./data/mongo:/data/db/"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+
+  
   
   ghost:
     image: ghost:4
