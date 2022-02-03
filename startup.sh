@@ -20,6 +20,11 @@ sudo apt install certbot
 # make a certificate
 sudo certbot certonly --standalone -d domain.com
 
+# make data directories
+mkdir ./data
+mkdir ./data/mysql
+mkdir ./data/ghost
+
 
 # run docker compose
 sudo docker-compose up
