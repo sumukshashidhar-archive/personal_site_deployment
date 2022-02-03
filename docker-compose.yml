@@ -3,7 +3,8 @@ version: '3.8'
 services:
 
   frontend_one:
-    context: ./frontend
+    build:
+      context: ./frontend
     container_name: frontend_one
     restart: always
     environment:
@@ -13,7 +14,8 @@ services:
   
 
   frontend_two:
-    context: ./frontend
+    build:
+      context: ./frontend
     container_name: frontend_two
     restart: always
     environment:
@@ -21,10 +23,36 @@ services:
       - NAME="NAME"
       - SERVER_NUMBER=2
   
-
+  
+  ghost:
+    image: ghost:4
+    restart: always
+    depends_on:
+      - db
+    environment:
+      url: https://shishirsudhaman.com/blog
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: example
+      database__connection__database: ghost
+    volumes:
+      - ./data/ghost/:/var/lib/ghost/content
+  
+  
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      
+  
   nginx:
     container_name: nginx_container
-    context: ./nginx
+    build:
+      context: ./nginx
     restart: always
     depends_on:
       - frontend
