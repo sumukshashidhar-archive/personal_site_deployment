@@ -8,6 +8,9 @@ sudo apt install docker-compose
 # clone our frontend repository
 git clone https://github.com/sumukshashidhar/personal_website_frontend.git ./frontend
 
+# clone our backend authentication repository
+git clone https://github.com/sumukshashidhar/personal_website_authentication.git ./authentication
+
 # make nginx html directory
 sudo mkdir -p /usr/share/nginx/html
 
