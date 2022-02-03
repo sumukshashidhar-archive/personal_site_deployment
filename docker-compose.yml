@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+
+  frontend_one:
+    context: ./frontend
+    container_name: frontend_one
+    restart: always
+    environment:
+      - PORT=3000
+      - NAME="NAME"
+      - SERVER_NUMBER=1
+  
+
+  frontend_two:
+    context: ./frontend
+    container_name: frontend_two
+    restart: always
+    environment:
+      - PORT=3000
+      - NAME="NAME"
+      - SERVER_NUMBER=2
+  
+
+  nginx:
+    container_name: nginx_container
+    context: ./nginx
+    restart: always
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+       - /etc/letsencrypt/:/etc/letsencrypt/
+       - /usr/share/nginx/html:/usr/share/nginx/html
